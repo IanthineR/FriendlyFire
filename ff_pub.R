@@ -1,22 +1,18 @@
 #'
 #'Project: analyze data from Friendly Fire podcast
 #'
-#'Last modified: 4/16/20
+#'Last modified: 4/19/20
 #'
 #'User: IanthineR
 #'
 
-#load libraries
-library(tidyverse)
-library(ggplot2)
-library(readxl)
 
 # Libraries and raw data --------------------------------------------------
 
 #load libraries
 library(tidyverse)
 library(readxl)
-library(lattice)
+library(ggridges)
 
 #raw data
 ff <- read_xlsx("C:/Users/Ian/OneDrive/Programming/R/FF/ff.xlsx")
@@ -30,12 +26,18 @@ ffgg <- as_tibble(ffgg)
 
 # * All host plots ------------------------------------------------------------
 
+#Densityplot
+dplot <- ggplot(ffgg,aes(x=rating,y=host))+
+  geom_density_ridges(aes(fill=host))
+dplot
+
 #faceted plot separated by host; year vs rating 
 #with trendlines
 yvr_plot <- ggplot(ffgg,aes(year,rating))+
   geom_point(aes(color=host))+
   geom_line(aes(color=host))+
   geom_smooth()+
+  scale_y_continuous(name = "Rating",breaks = seq(0,6,0.25))+
   facet_wrap(~host,nrow=1)
 yvr_plot
 
@@ -46,6 +48,7 @@ evr_plot <- ggplot(ffgg,aes(epnum,rating))+
   geom_line(aes(color=host))+
   geom_smooth()+
   facet_wrap(~host,nrow=1)+
+  scale_y_continuous(name = "Rating",breaks = seq(0,6,0.25))+
   xlab("Episode Number")
 evr_plot
 
