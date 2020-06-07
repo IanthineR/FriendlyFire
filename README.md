@@ -9,10 +9,12 @@ ff_pub.R contains the code I used to complete my analyses.
 
 Latest update: 
 
-Will no longer be updating/uploading .csv file.
+Spreadsheet now includes imdb ratings (imdb_rating is the value out of 10 | imdb_scaled is (imdb_rating)/2 to keep rating scale continuous | n_ratings is the number of users who contributed to the imdb rating)
 
 ---
 Previous updates 
+
+Will no longer be updating/uploading .csv file.
 
 May 2, 2020 - simplified code so weekly rating plots are easier to find.
 
